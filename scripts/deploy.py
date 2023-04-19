@@ -1,8 +1,8 @@
 from woke.deployment import *
+from pytypes.contracts.Dummy import Dummy
 
-NODE_URL = "ENTER_NODE_URL_HERE"
 
-
-@default_chain.connect(NODE_URL)
+@default_chain.connect("https://rpc.public.zkevm-test.net")
 def main():
-    default_chain.set_default_accounts(Account.from_alias("deployment"))
+    acc = Account.from_mnemonic("YOUR MNEMONIC HERE")
+    estimate = Dummy.deploy(request_type="estimate", from_=acc)
